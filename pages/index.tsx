@@ -1,15 +1,18 @@
 import styled from 'styled-components'
+import MainLayout from '../components/templates/MainLayout'
 
 const StyledHeader = styled.h1`
-  font-size: 2em;
-  text-align: left;
-  padding: 16px 16px;
+  ${({ theme }) => `
+    font-size: 2em;
+    text-align: left;
+    padding: ${theme['padding-small']} ${theme['padding-small']};
+  `}
 `
 
 const Index = () => (
-  <div>
+  <MainLayout title={'ミカン'}>
     <StyledHeader>Index Page</StyledHeader>
-  </div>
+  </MainLayout>
 )
 
 export default Index
