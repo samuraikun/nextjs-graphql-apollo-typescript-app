@@ -4,7 +4,6 @@ export const articleGraphQL = gql`
   query articleGraphQL($where: ArticleWhereUniqueInput!) {
     article(where: $where) {
       id
-      status
       title
       content
       description

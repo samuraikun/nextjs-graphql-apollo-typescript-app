@@ -2,9 +2,8 @@ import gql from 'graphql-tag';
 
 export const createArticleGraphQL = gql`
   mutation createArticleGraphQL($data: ArticleCreateInput!) {
-    createRecipe(data: $data) {
+    createArticle(data: $data) {
       id
-      status
       title
       content
       description

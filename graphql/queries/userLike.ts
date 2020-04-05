@@ -7,7 +7,6 @@ export const userLikeGraphQL = gql`
       user
       article {
         id
-        status
         title
         content
         description

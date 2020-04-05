@@ -1,10 +1,9 @@
 import gql from 'graphql-tag';
 
-export const updateRecipeGraphQL = gql`
+export const updateArticleGraphQL = gql`
   mutation updateArticleGraphQL($data: ArticleUpdateInput!, $where: ArticleWhereUniqueInput!) {
     updateArticle(data: $data, where: $where) {
       id
-      status
       title
       content
       description
