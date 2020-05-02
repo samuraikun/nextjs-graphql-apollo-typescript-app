@@ -7,6 +7,7 @@ import { Article } from '../../generated/apollo-components'
 import { Error } from '../molecules/Error'
 import { Loading } from '../molecules/Loading'
 import { Warning } from '../molecules/Warning'
+import { ArticleListItem } from './ArticleListItem'
 
 export enum queryEnum {
   userLikes = 'userLikes',
@@ -40,7 +41,11 @@ export const ArticlesList = ({ options, parentRoute, queryType }: ArticlesListPr
   return (
     <Row>
       {articlesList.map((article: Article) => (
-        <p key={article.id}>{article.title}</p>
+        <ArticleListItem
+          article={article}
+          key={`${article.id}-${queryType}`}
+          parentRoute={parentRoute}
+        />
       ))}
     </Row>
   )

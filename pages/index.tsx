@@ -13,7 +13,7 @@ const StyledHeader = styled.h1`
 const Index = () => (
   <MainLayout title={'ミカン'}>
     <StyledHeader>Index Page</StyledHeader>
-    <ArticlesList parentRoute="article" queryType={queryEnum.articles} />
+    <ArticlesList parentRoute="articles" queryType={queryEnum.articles} />
   </MainLayout>
 )
 
