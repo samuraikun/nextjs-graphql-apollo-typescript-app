@@ -4,6 +4,9 @@ import { articlesGraphQL } from '../../graphql/queries/articles'
 import { userLikesGraphQL } from '../../graphql/queries/userLikes'
 import { Row } from 'antd'
 import { Article } from '../../generated/apollo-components'
+import { Error } from '../molecules/Error'
+import { Loading } from '../molecules/Loading'
+import { Warning } from '../molecules/Warning'
 
 export enum queryEnum {
   userLikes = 'userLikes',
@@ -23,9 +26,16 @@ export const ArticlesList = ({ options, parentRoute, queryType }: ArticlesListPr
   const parentArray = _.get(data, queryType)
   const articlesList = _.map(parentArray, value => _.get(value, 'article', value))
 
-  if (loading) return <p>Loading...</p>
-  if (error || !articlesList) return <p>Error</p>
-  if (articlesList.length === 0) return <p>Warning</p>
+  if (loading) return <Loading />
+  if (error || !articlesList) return <Error errorText={`${error}`} />
+  if (articlesList.length === 0) {
+    return (
+      <Warning
+        warningHeader="No Articles"
+        warningText="記事がまだありません。"
+      />
+    )
+  }
 
   return (
     <Row>
