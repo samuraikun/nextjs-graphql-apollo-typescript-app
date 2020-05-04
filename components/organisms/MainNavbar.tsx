@@ -62,7 +62,7 @@ const Title = styled.div`
 `
 
 const MainNavbar = () => {
-  const { user } = useFetchUser()
+  const { user, loading } = useFetchUser()
 
   return (
     <StyledHeader>
@@ -81,13 +81,18 @@ const MainNavbar = () => {
             <a>Home</a>
           </Link>
         </Menu.Item>
-        {user
+        {user && !loading
           ? [
-            <Menu.Item key="/api/logout">
-              <Link href="/api/logout">
-                <a>ログアウト</a>
-              </Link>
-            </Menu.Item>
+              <Menu.Item key="/my-articles">
+                <Link href="/my-articles">
+                  <a>My Articles</a>
+                </Link>
+              </Menu.Item>,
+              <Menu.Item key="/api/logout">
+                <Link href="/api/logout">
+                  <a>ログアウト</a>
+                </Link>
+              </Menu.Item>
             ]
           : [
             <Menu.Item key="/api/login">
