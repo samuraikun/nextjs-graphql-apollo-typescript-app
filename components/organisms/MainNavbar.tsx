@@ -1,6 +1,7 @@
 import { Layout, Menu } from 'antd'
 import Link from 'next/link'
 import styled from 'styled-components'
+import { useFetchUser } from '../../utils/user'
 
 const { Header } = Layout
 const StyledHeader = styled(Header)`
@@ -60,25 +61,45 @@ const Title = styled.div`
   `}
 `
 
-const MainNavbar = () => (
-  <StyledHeader>
-    <TitleContainer>
-      <Title>
-        <img src="/logo.svg" alt="Next Chop Logo" />
-        <div>
-          <h2>ミカン食ってみな！飛ぶぞ！🍊</h2>
-          <p>最高にキマるミカンをご紹介！</p>
-        </div>
-      </Title>
-    </TitleContainer>
-    <StyledMenu theme="light" mode="horizontal" style={{ lineHeight: '64px' }}>
-      <Menu.Item key="/">
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </Menu.Item>
-    </StyledMenu>
-  </StyledHeader>
-)
+const MainNavbar = () => {
+  const { user } = useFetchUser()
+
+  return (
+    <StyledHeader>
+      <TitleContainer>
+        <Title>
+          <img src="/logo.svg" alt="logo" />
+          <div>
+            <h2>ミカン食ってみな！飛ぶぞ！🍊</h2>
+            <p>方針がブレブレなメディアサイト</p>
+          </div>
+        </Title>
+      </TitleContainer>
+      <StyledMenu theme="light" mode="horizontal" style={{ lineHeight: '64px' }}>
+        <Menu.Item key="/">
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+        </Menu.Item>
+        {user
+          ? [
+            <Menu.Item key="/api/logout">
+              <Link href="/api/logout">
+                <a>ログアウト</a>
+              </Link>
+            </Menu.Item>
+            ]
+          : [
+            <Menu.Item key="/api/login">
+              <Link href="/api/login">
+                <a>ログイン</a>
+              </Link>
+            </Menu.Item>
+          ]
+        }
+      </StyledMenu>
+    </StyledHeader>
+  )
+}
 
 export default MainNavbar
